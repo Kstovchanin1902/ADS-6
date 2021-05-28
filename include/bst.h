@@ -12,7 +12,7 @@ class BST {
          Node *left;
          Node *right;
      };
-  
+
  private:
      Node* root;
      Node* addNode(Node *, T);
@@ -21,7 +21,7 @@ class BST {
      int searchNode(Node*, T);
      void delTree(Node*);
      Node* delNode(Node*, int);
- 
+
  public:
      BST();
      ~BST();
@@ -106,8 +106,7 @@ int BST<T>::search(T value) {
     return searchNode(root, value);
 }
 template < typename T>
-void BST<T>::delTree(Node *root)
-{
+void BST<T>::delTree(Node *root) {
     if (root == nullptr) {
         return;
     } else {
@@ -128,13 +127,13 @@ typename BST<T>::Node* BST<T>::delNode(typename BST<T>::Node* root,
 int value) {
     Node *p, *v;
     //случай 0
-    if (root == nullptr)
+    if (root == nullptr) {
         return root;
-    else if (value < root -> value)
+    } else if (value < root -> value) {
         root -> left = delNode(root -> left, value);
-    else if (value > root -> value)
+    } else if (value > root -> value) {
         root -> right = delNode(root -> right, value);
-    else {
+    } else {
         p = root;
         if (root -> right == nullptr)
             root = root -> left;
