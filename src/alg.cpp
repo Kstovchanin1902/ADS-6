@@ -4,7 +4,7 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
-void downReg(std::string&str) {
+std::string downReg(std::string str) {
     char* up =  reinterpret_cast<char*>(str);
     std::string tranz = "";
     int count = str.length();
@@ -14,6 +14,7 @@ void downReg(std::string&str) {
         tranz.push_back(up[i]);
     }
     str = tranz;
+    return str;
 }
 BST<std::string> makeTree(const char* filename) {
 std::ifstream fin(filename);
@@ -30,12 +31,17 @@ std::ifstream fin(filename);
                    symb = outCh[i];
                    res.push_back(symb);
                } else {
-                if (res != "") {
-                downReg(res);
+                if (!res.empty()) {
+                res = downReg(res);
                 wAP.add(res);
                 }
-                res = "";
+                res.clear();
                }
+            if (!res.empry()) {
+                res = downReg(res);
+                wAP.add(res);
+            }
+            res.clear();
         }
     }
     return wAP;
