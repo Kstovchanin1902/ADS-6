@@ -4,6 +4,7 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
+#include "string.h"
 std::string downReg(std::string str) {
     char* up =  new char[str.length() + 1];
     strcpy(up, str.c_str());
