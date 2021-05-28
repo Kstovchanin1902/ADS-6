@@ -4,10 +4,10 @@
 #include  <locale>
 #include  <cstdlib>
 #include  "bst.h"
-void downReg(std::string &str) {
-    char* up =  (char*) str.c_str();
+void downReg(std::string&str) {
+    char* up =  reinterpret_cast<char*>(str);
     std::string tranz = "";
-    int count = str.length(); 
+    int count = str.length();
     for (int i = 0; i < count; i++) {
         if (up[i] >= 'A' && up[i] <= 'Z')
             up[i] += ('a' - 'A');
@@ -16,7 +16,7 @@ void downReg(std::string &str) {
     str = tranz;
 }
 BST<std::string> makeTree(const char* filename) {
-std::ifstream fin (filename);
+std::ifstream fin(filename);
     BST<std::string> wAP;
     if (fin.is_open()) {
         std::string outCh;
@@ -29,8 +29,7 @@ std::ifstream fin (filename);
                (outCh[i] >= 'a' && outCh[i] <= 'z')) {
                    symb = outCh[i];
                    res.push_back(symb);
-               }
-               else {
+               } else {
                 if (res != "") {
                 downReg(res);
                 wAP.add(res);
