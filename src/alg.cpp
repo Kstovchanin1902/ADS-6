@@ -5,7 +5,7 @@
 #include  <cstdlib>
 #include  "bst.h"
 std::string downReg(std::string str) {
-    char* up =  reinterpret_cast<char*>(str.c_str());
+    char* up =  (char*) str.c_str();
     std::string tranz = "";
     int count = str.length();
     for (int i = 0; i < count; i++) {
