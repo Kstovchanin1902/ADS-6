@@ -5,7 +5,8 @@
 #include  <cstdlib>
 #include  "bst.h"
 std::string downReg(std::string str) {
-    char* up =  alloc_storage(str);
+    char* up =  new char[str.length() + 1];
+    strcpy(up, str.c_str());
     std::string tranz = "";
     int count = str.length();
     for (int i = 0; i < count; i++) {
