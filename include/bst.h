@@ -13,6 +13,7 @@ class BST {
          Node *left;
          Node *right;
      };
+ 
  private:
      Node* root;
      Node* addNode(Node *, T);
@@ -21,6 +22,7 @@ class BST {
      int searchNode(Node*, T);
      void delTree(Node*);
      Node* delNode(Node*, int);
+ 
  public:
      BST();
      ~BST();
@@ -49,7 +51,9 @@ typename BST<T>::Node* BST<T>::addNode(Node *root, T value) {
         root -> left = addNode(root -> left, value);
     } else if (root -> value < value) {
         root -> right = addNode(root -> right, value);
-    } else root -> count++;
+    } else {
+        root -> count++;
+    }
     return root;
 }
 template <typename T>
@@ -73,8 +77,7 @@ template <typename T>
 int BST<T>::depthTree(Node* root) {
     if (root == nullptr)
         return 0;
-    else
-    {
+    else {
         int lt = depthTree(root -> left);
         int rt = depthTree(root -> right);
         return ((lt > rt)? lt:rt) + 1;
@@ -89,8 +92,7 @@ template <typename T>
 int BST<T>::searchNode(Node* root, T value) {
     if (root == nullptr)
         return 0;
-    else
-    {
+    else {
         if (root -> value > value)
             return searchNode(root -> left, value);
         if (root -> value < value)
@@ -100,7 +102,7 @@ int BST<T>::searchNode(Node* root, T value) {
     }
     return root -> count;
 }
-template <typename T> 
+template <typename T>
 int BST<T>::search(T value) {
     return searchNode(root, value);
 }
@@ -123,7 +125,7 @@ void BST<T>::clear() {
     }
 }
 template <typename T>
-typename BST<T>::Node* BST<T>::delNode(typename BST<T>::Node* root, 
+typename BST<T>::Node* BST<T>::delNode(typename BST<T>::Node* root,
 int value) {
     Node *p, *v;
     //случай 0
@@ -140,7 +142,7 @@ int value) {
         if (root -> left == nullptr)
             root = root -> right;
         else {
-           v = root -> left; 
+           v = root -> left;
            if (v -> right) {
                while (v -> right -> right)
                    v = v -> right;
